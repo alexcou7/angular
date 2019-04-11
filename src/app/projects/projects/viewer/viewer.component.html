@@ -1,0 +1,14 @@
+<h3 style="color: #1976d2">Your project information:</h3>
+<div style="border: solid 1px; width: 30%">
+        <ul *ngIf="projects[id] != null; else notFound">
+            <p><strong>Project id:</strong> {{projects[id].id}}</p>
+            <p><strong>Project name:</strong> {{projects[id].name}}</p>
+
+
+        </ul>
+</div>
+<ng-template #notFound>
+<p style="color: red" >The project with ID: {{id}} doesnt exists in our database</p>
+</ng-template>
+
+

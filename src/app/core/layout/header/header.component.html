@@ -1,9 +1,5 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    ¡Bienvenido al proyecto de: {{ title }}!
-  </h1>
-  <img width="300"
-       alt="Angular Logo"
-       src="./assets/logo.jpg">
-</div>
+<header class="sticky">
+  <a routerLink="/" class="logo"> <span class="icon-home"></span> <span>{{ title }}</span> </a>
+  <a routerLink="projects" routerLinkActive="router-link-active" class="button"> <span> Projects </span>
+</a>
+</header>
