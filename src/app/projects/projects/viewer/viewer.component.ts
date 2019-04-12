@@ -19,6 +19,7 @@ export class ViewerComponent implements OnInit {
       this.id = activateRoute.snapshot.params.id;
       this.projects = environment.projects;
       this.projectMostrar = this.projects.filter(project => project.id == this.id)[0];
+      console.log('aaaaaaaaaaaaaaaaaa');
     });
   }
   ngOnInit() {}
