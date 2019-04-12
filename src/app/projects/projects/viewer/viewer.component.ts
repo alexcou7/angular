@@ -18,6 +18,7 @@ export class ViewerComponent implements OnInit {
     this.activateRoute.params.subscribe(routeParams => {
       this.id = activateRoute.snapshot.params.id;
       this.projects = environment.projects;
+      console.log('oooooooooooooooooooooooooo');
       this.projectMostrar = this.projects.filter(project => project.id == this.id)[0];
       console.log('aaaaaaaaaaaaaaaaaa');
     });
