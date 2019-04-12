@@ -24,13 +24,14 @@ export class NewComponent implements OnInit {
   public saveProject() {
     this.mensajeOk = '';
     this.mensajeFail = '';
+
     for (const p of environment.projects) {
-      if (p.id === this.project.id) {
+      if (p.id == this.project.id) {
         this.mensajeFail = 'Project not added because the ID is already registered in the project: ' + p.name;
         return;
       }
     }
-    if (this.project.name === '') {
+    if (this.project.name == '') {
       this.mensajeFail = 'Project not added because you have not specified the name';
       return;
     }

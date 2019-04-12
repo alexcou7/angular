@@ -11,9 +11,15 @@ import { Project } from '../../model/project.model';
 export class ViewerComponent implements OnInit {
   public projects: Project[];
   public id: number;
-  constructor(activateRoute: ActivatedRoute) {
-    this.id = activateRoute.snapshot.params.id;
-    this.projects = environment.projects;
+  public notFound: true;
+  public projectMostrar: Project;
+
+  constructor(private activateRoute: ActivatedRoute) {
+    this.activateRoute.params.subscribe(routeParams => {
+      this.id = activateRoute.snapshot.params.id;
+      this.projects = environment.projects;
+      this.projectMostrar = this.projects.filter(project => project.id == this.id)[0];
+    });
   }
   ngOnInit() {}
 }
