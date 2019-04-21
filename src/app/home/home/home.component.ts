@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { environment } from '../../../environments/environment';
 
 @Component({
@@ -7,7 +7,7 @@ import { environment } from '../../../environments/environment';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  public numProjects = environment.projects.length;
+  @Input() public numProjects = environment.projects.length;
   constructor() {}
 
   ngOnInit() {}

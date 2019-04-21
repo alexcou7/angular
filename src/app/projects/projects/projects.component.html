@@ -1,26 +1,6 @@
 <button routerLink="new" class="primary small" style="margin-left: 33px" > New Project </button>
+<app-filter  (applyFilter)="applyFilter($event)"></app-filter>
+<app-list [projects]="projects"></app-list>
 
-<router-outlet></router-outlet>
-<div style="width: 60%">
-<table class="small">
-<ul *ngIf="projects.length>0; else empty">
-    <thead>
-      <tr>
-        <th style="width: 20px;">Id</th>
-        <th>Name</th>
-        <th>Actions</th>
-      </tr>
-    </thead>
-    <tbody>
-  <tr *ngFor="let project of projects">
-  <td data-label="Id" style="width: 20px;">{{ project.id }}</td>
-  <td data-label="Name">{{ project.name }}</td>
-  <td data-label="Actions" style="padding: 0;"><button class="primary small" routerLink='{{ project.id }}'>See more info</button></td>
-  </tr>
-</tbody>
- </ul>
- <ng-template #empty> <i>No data yet</i> </ng-template>
-</table>
-</div>
 
 

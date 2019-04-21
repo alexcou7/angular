@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { environment } from '../../../../environments/environment';
 import { Project } from '../../model/project.model';
+import { ProjectsService } from '../../service/projects.service';
 
 @Component({
   selector: 'app-new',
@@ -12,7 +13,7 @@ export class NewComponent implements OnInit {
   public mensajeFail: string;
   public mensajeOk: string;
 
-  constructor() {}
+  constructor(private projectsService: ProjectsService) {}
 
   ngOnInit() {
     this.project = {
@@ -40,7 +41,8 @@ export class NewComponent implements OnInit {
       return;
     }
 
-    environment.projects.push({ ...this.project });
+    this.projectsService.addProject(this.project);
+
     this.mensajeOk = 'Project ' + this.project.name + ' added successfully';
     this.project = {
       id: null,

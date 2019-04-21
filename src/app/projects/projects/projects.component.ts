@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { environment } from '../../../environments/environment';
+import { ProjectsService } from '../service/projects.service';
+import { Project } from './new/new.component';
 
 @Component({
   selector: 'app-projects',
@@ -7,9 +8,15 @@ import { environment } from '../../../environments/environment';
   styleUrls: ['./projects.component.css']
 })
 export class ProjectsComponent implements OnInit {
-  public projects = environment.projects;
+  public projects: Project[];
 
-  constructor() {}
+  constructor(private projectsService: ProjectsService) {
+    this.projects = this.projectsService.obtainAllProjects();
+  }
 
   ngOnInit() {}
+
+  public applyFilter(name: string) {
+    this.projects = this.projectsService.obtainProjectsFilteredByNameLike(name);
+  }
 }

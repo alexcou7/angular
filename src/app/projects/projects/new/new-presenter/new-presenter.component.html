@@ -1,0 +1,19 @@
+<div>
+  <form>
+    <fieldset>
+      <legend>New Project Form</legend>
+      <section>
+        <label for="name">Name</label>
+        <input name="name" type="text" [(ngModel)]="project.name" placeholder="Project name" />
+      </section>
+      <section>
+        <label for="id">Id</label>
+        <input name="id" type="text" [(ngModel)]="project.id" placeholder="Project id" style="margin-left: 32px;"/>
+        <input value="Add project" type="submit" (click)="saveProject.emit()" style="background-color: #1976d2; color: white"/>
+        <button routerLink="/projects" class="primary small" style="margin-left: 10px; padding: 8px;"> Return </button>
+      </section>
+    </fieldset>
+    <p style="color: seagreen">{{mensajeOk}}</p>
+    <p style="color: red">{{mensajeFail}}</p>
+  </form>
+  </div>

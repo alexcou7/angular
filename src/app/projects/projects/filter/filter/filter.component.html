@@ -1,0 +1,9 @@
+<div style="margin-left: 25px; width: fit-content">
+  <form>
+      <label for="name">Filter by name</label>
+        <input name="name" type="text" [(ngModel)]="name" placeholder="Substring to filter" />
+        <input value="Apply filter" type="submit" (click)="filtrar()" style="background-color: #1976d2; color: white"/>
+        <input value="Remove filter" type="submit" (click)="removeFilter()" style="background-color: #1976d2; color: white"/>
+  </form>
+</div>
+

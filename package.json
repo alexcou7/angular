@@ -10,7 +10,7 @@
     "pub": "npm run build:pub && npm run push",
     "push": "git add * && git commit -m 'pub' && git push",
     "start:prod": "npm run build:prod && npm run http-server",
-    "start": "ng serve -o --port 4279",
+    "start": "ng serve -o --port 4278",
     "test": "ng test",
     "test2": "ng test"
   },

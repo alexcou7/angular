@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { environment } from '../../../../environments/environment';
 import { Project } from '../../model/project.model';
+import { ProjectsService } from '../../service/projects.service';
 
 @Component({
   selector: 'app-viewer',
@@ -14,11 +15,11 @@ export class ViewerComponent implements OnInit {
   public notFound: true;
   public projectMostrar: Project;
 
-  constructor(private activateRoute: ActivatedRoute) {
+  constructor(private activateRoute: ActivatedRoute, private projectsService: ProjectsService) {
     this.activateRoute.params.subscribe(routeParams => {
       this.id = activateRoute.snapshot.params.id;
       this.projects = environment.projects;
-      this.projectMostrar = this.projects.filter(project => project.id == this.id)[0];
+      this.projectMostrar = projectsService.obtainOneProject(this.id);
     });
   }
   ngOnInit() {}
