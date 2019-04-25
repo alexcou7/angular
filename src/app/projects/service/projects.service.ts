@@ -1,40 +1,51 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { environment } from '../../../environments/environment';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { Project } from '../projects/new/new.component';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProjectsService {
-  private projects = environment.projects;
-  private projectsFiltered: Project[] = new Array();
-  private nameUpper = '';
+  private projects$: Observable<Project[]> = null;
+  private url = 'https://api-base.herokuapp.com/api/pub/projects';
 
-  constructor() {}
+  constructor(private httpClient: HttpClient) {}
 
   public obtainAllProjects() {
-    return this.projects;
+    this.obtainProjectsFromURL();
+    return this.projects$;
   }
 
   public obtainOneProject(id: any) {
-    return this.projects.filter(project => project.id == id)[0];
+    this.obtainProjectsFromURL();
+    return this.projects$.pipe(map(projects => projects.filter(projects => projects.id == id)));
+  }
+  private transformArray(ar: any[]) {
+    ar.forEach(fila => {
+      fila['id'] = fila['_id'];
+      delete fila['_id'];
+    });
+    return ar;
   }
 
   public addProject(project: Project) {
-    environment.projects.push(project);
+    this.httpClient.post(this.url, project).subscribe();
   }
 
   public obtainProjectsFilteredByNameLike(name: string) {
+    this.obtainProjectsFromURL();
     if (name == null || name.trim() == '') {
-      return this.projects;
+      return this.projects$;
     } else {
-      this.projectsFiltered = new Array();
-      for (const project of environment.projects) {
-        if (project.name.toUpperCase().includes(name.toUpperCase())) {
-          this.projectsFiltered.push(project);
-        }
-      }
-      return this.projectsFiltered;
+      return this.projects$.pipe(
+        map(projects => projects.filter(projects => projects.name.toUpperCase().includes(name.toUpperCase())))
+      );
     }
+  }
+
+  public obtainProjectsFromURL() {
+    this.projects$ = this.httpClient.get(this.url).pipe(map(this.transformArray));
   }
 }

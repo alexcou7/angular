@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { environment } from '../../../../environments/environment';
 import { Project } from '../../model/project.model';
 import { ProjectsService } from '../../service/projects.service';
 
@@ -26,18 +25,8 @@ export class NewComponent implements OnInit {
     this.mensajeOk = '';
     this.mensajeFail = '';
 
-    for (const p of environment.projects) {
-      if (p.id == this.project.id) {
-        this.mensajeFail = 'Project not added because the ID is already registered in the project: ' + p.name;
-        return;
-      }
-    }
     if (this.project.name == '') {
       this.mensajeFail = 'Project not added because you have not specified the name';
-      return;
-    }
-    if (this.project.id == null) {
-      this.mensajeFail = 'Project not added because you have not specified the id';
       return;
     }
 

@@ -1,3 +1,7 @@
-<h2>
-  You have <mark class="counterClass">{{ numProjects }}</mark> projects.
-</h2>
+<div *ngIf="(projects$ | async)?.length > 0; else noProjects">
+  <h2>You have <mark class="counterClass">{{ (projects$|async)?.length }}</mark> projects.</h2>
+</div>
+
+<ng-template #noProjects>
+<h2>You have <mark class="counterClass">0</mark> projects.</h2>
+</ng-template>

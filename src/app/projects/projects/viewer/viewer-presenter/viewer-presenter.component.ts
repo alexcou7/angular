@@ -9,7 +9,7 @@ import { Project } from '../../../model/project.model';
 export class ViewerPresenterComponent implements OnInit {
   @Input() public id: number;
   @Input() public notFound: true;
-  @Input() public projectMostrar: Project;
+  @Input() public projectsMostrar: Project[];
   constructor() {}
 
   ngOnInit() {}

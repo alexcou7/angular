@@ -1,6 +1,6 @@
-<button routerLink="new" class="primary small" style="margin-left: 33px" > New Project </button>
+<button routerLink="new" class="primary small"> New Project </button>
 <app-filter  (applyFilter)="applyFilter($event)"></app-filter>
-<app-list [projects]="projects"></app-list>
+<app-list [projects$]="projects$"></app-list>
 
 
 
