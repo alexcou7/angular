@@ -1,1 +1,2 @@
-<app-new-presenter [project]="project" [mensajeFail]="mensajeFail" [mensajeOk]="mensajeOk" (saveProject)="saveProject()"></app-new-presenter>
+<app-new-presenter [formGroup]="formGroup"  [errors]="getError('name')"  [mensajeOk]="mensajeOk" (saveProject)="saveProject()"></app-new-presenter>
+

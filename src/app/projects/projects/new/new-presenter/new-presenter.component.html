@@ -1,15 +1,13 @@
-<div>
-  <form>
-    <fieldset>
-      <legend>New Project Form</legend>
-      <section>
-        <label for="name">Name</label>
-        <input name="name" type="text" [(ngModel)]="project.name" placeholder="Project name" />
-        <input value="Add project" type="submit" (click)="saveProject.emit()" style="background-color: #1976d2; color: white"/>
-        <button routerLink="/projects" class="primary small" style="margin-left: 10px; padding: 8px;"> Return </button>
-      </section>
-    </fieldset>
-    <p style="color: seagreen">{{mensajeOk}}</p>
-    <p style="color: red">{{mensajeFail}}</p>
-  </form>
-  </div>
+<form [formGroup]="formGroup">
+  <fieldset>
+    <legend>New Project Form</legend>
+    <section>
+      <label for="name">Name (5-20 letters)</label>
+      <input name="name" formControlName="name" type="text">
+      <button class="primary small" style="margin-left: 10px; padding: 8px;" (click)="saveProject.emit()" [disabled]="formGroup.invalid">Add Project</button>
+      <button routerLink="/projects" class="primary small" style="margin-left: 10px; padding: 8px;"> Return </button>
+    </section>
+    <p style="color: red">{{errors}}</p>
+  </fieldset>
+  <p style="color: seagreen">{{mensajeOk}}</p>
+</form>

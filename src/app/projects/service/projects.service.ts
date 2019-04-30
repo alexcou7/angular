@@ -23,10 +23,12 @@ export class ProjectsService {
     return this.projects$.pipe(map(projects => projects.filter(projects => projects.id == id)));
   }
   private transformArray(ar: any[]) {
-    ar.forEach(fila => {
-      fila['id'] = fila['_id'];
-      delete fila['_id'];
-    });
+    if (ar != null) {
+      ar.forEach(fila => {
+        fila['id'] = fila['_id'];
+        delete fila['_id'];
+      });
+    }
     return ar;
   }
 

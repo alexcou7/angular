@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Project } from '../../model/project.model';
 import { ProjectsService } from '../../service/projects.service';
 
@@ -9,34 +10,57 @@ import { ProjectsService } from '../../service/projects.service';
 })
 export class NewComponent implements OnInit {
   public project: Project;
-  public mensajeFail: string;
   public mensajeOk: string;
+  public formGroup: FormGroup;
 
-  constructor(private projectsService: ProjectsService) {}
+  constructor(private projectsService: ProjectsService, private formBuilder: FormBuilder) {}
 
   ngOnInit() {
     this.project = {
       id: null,
       name: ''
     };
+    this.buildForm();
+  }
+  private buildForm() {
+    this.formGroup = this.formBuilder.group({
+      name: ['', [Validators.nullValidator, this.validateName]],
+      id: null
+    });
+  }
+
+  private validateName(control: AbstractControl) {
+    const name = control.value;
+    let error = null;
+    if (name.length < 5) {
+      error = { ...error, tamMin: '*Min size is 5 letters. Current size: ' + name.length + ' letters*' };
+    }
+    if (name.length > 20) {
+      error = { ...error, tamMax: '*Max size is 20 letters. Current size: ' + name.length + ' letters*' };
+    }
+    return error;
+  }
+  public getError(controlName: string): any {
+    let error = '';
+    const control = this.formGroup.get(controlName);
+    if (control.dirty && control.errors != null) {
+      error = JSON.stringify(control.errors);
+      error = error.split('*')[1];
+    }
+    return error;
   }
 
   public saveProject() {
+    const projectReact = this.formGroup.value;
     this.mensajeOk = '';
-    this.mensajeFail = '';
 
-    if (this.project.name == '') {
-      this.mensajeFail = 'Project not added because you have not specified the name';
-      return;
-    }
-
-    this.projectsService.addProject(this.project);
-
-    this.mensajeOk = 'Project ' + this.project.name + ' added successfully';
     this.project = {
       id: null,
-      name: ''
+      name: projectReact.name
     };
+    this.projectsService.addProject(this.project);
+
+    this.mensajeOk = 'Project ' + projectReact.name + ' added successfully';
   }
 }
 

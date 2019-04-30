@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Project } from '../../../model/project.model';
+import { FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-new-presenter',
@@ -7,9 +7,9 @@ import { Project } from '../../../model/project.model';
   styleUrls: ['./new-presenter.component.css']
 })
 export class NewPresenterComponent implements OnInit {
-  @Input() public project: Project;
-  @Input() public mensajeFail: string;
   @Input() public mensajeOk: string;
+  @Input() public formGroup: FormGroup;
+  @Input() public errors: any;
   @Output() public saveProject = new EventEmitter();
   constructor() {}
 

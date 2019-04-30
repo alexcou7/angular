@@ -1,9 +1,7 @@
 <div style=" width: fit-content">
-  <form>
       <label for="name">Filter by name</label>
-        <input name="name" type="text" [(ngModel)]="name" placeholder="Substring to filter" />
-        <input value="Apply filter" type="submit" (click)="filtrar()" style="background-color: #1976d2; color: white"/>
-        <input value="Remove filter" type="submit" (click)="removeFilter()" style="background-color: #1976d2; color: white"/>
-  </form>
+      <input name="name" type="text" [(ngModel)]="name" placeholder="Substring to filter" />
+      <button class="primary small" style="margin-left: 10px; padding: 8px;" (click)="filtrar()" >Apply filter</button>
+      <button class="primary small"  style="margin-left: 10px; padding: 8px;"(click)="removeFilter()">Remove filter</button>
 </div>
 
