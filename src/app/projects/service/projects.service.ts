@@ -42,7 +42,9 @@ export class ProjectsService {
       return this.projects$;
     } else {
       return this.projects$.pipe(
-        map(projects => projects.filter(projects => projects.name.toUpperCase().includes(name.toUpperCase())))
+        map(projects =>
+          projects.filter(projects => projects.name != null && projects.name.toUpperCase().includes(name.toUpperCase()))
+        )
       );
     }
   }
