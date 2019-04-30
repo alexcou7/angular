@@ -1,7 +1,12 @@
-<div style=" width: fit-content">
-      <label for="name">Filter by name</label>
-      <input name="name" type="text" [(ngModel)]="name" placeholder="Substring to filter" />
-      <button class="primary small" style="margin-left: 10px; padding: 8px;" (click)="filtrar()" >Apply filter</button>
-      <button class="primary small"  style="margin-left: 10px; padding: 8px;"(click)="removeFilter()">Remove filter</button>
+<div style=" width: fit-content; background-color: white">
+    <fieldset>
+      <label for="name" style="font-weight: bold; margin-right: 15px;">Filter by name:</label>
+      <mat-form-field >
+          <input matInput placeholder="Substring to filter"  [(ngModel)]="name" />
+      </mat-form-field>
+
+      <button mat-button style="background-color: #1976d2; color: white; margin-right: 15px;margin-left: 15px;" (click)="filtrar()" >Apply filter</button>
+      <button mat-button  style="background-color: #1976d2; color: white" (click)="removeFilter()">Remove filter</button>
+    </fieldset>
 </div>
 

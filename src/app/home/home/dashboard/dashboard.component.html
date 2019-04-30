@@ -1,7 +1,7 @@
 <div *ngIf="(projects$ | async)?.length > 0; else noProjects">
-  <h2>You have <mark class="counterClass">{{ (projects$|async)?.length }}</mark> projects.</h2>
+  <h2>You have <label style="color: #1976d2">{{ (projects$|async)?.length }} </label> projects.</h2>
 </div>
 
 <ng-template #noProjects>
-<h2>You have <mark class="counterClass">0</mark> projects.</h2>
+<h2>You have  <label style="color: #1976d2;">0</label> projects.</h2>
 </ng-template>

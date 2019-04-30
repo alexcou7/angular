@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatButtonModule, MatInputModule, MatTableModule, MatPaginatorModule, MatSortModule } from '@angular/material';
 import { ProjectsRoutingModule } from './projects-routing.module';
 import { FilterComponent } from './projects/filter/filter/filter.component';
 import { ListComponent } from './projects/list/list.component';
@@ -23,7 +24,18 @@ import { ProjectsService } from './service/projects.service';
     ViewerPresenterComponent,
     FilterComponent
   ],
-  imports: [CommonModule, ProjectsRoutingModule, FormsModule, HttpClientModule, ReactiveFormsModule],
+  imports: [
+    CommonModule,
+    ProjectsRoutingModule,
+    FormsModule,
+    HttpClientModule,
+    ReactiveFormsModule,
+    MatInputModule,
+    MatButtonModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule
+  ],
   exports: [ReactiveFormsModule],
   providers: [
     ProjectsService,

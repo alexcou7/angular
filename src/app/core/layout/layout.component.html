@@ -1,10 +1,33 @@
-<div class="container">
-  <div class="row">
-    <div class="col-sm-8 col-sm-offset-2">
-        <app-header></app-header>
-        <app-main></app-main>
-        <app-footer></app-footer>
-    </div>
-  </div>
-  </div>
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #drawer class="sidenav" fixedInViewport="true"
+      [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+      [mode]="(isHandset$ | async) ? 'over' : 'side'"
+      [opened]="!(isHandset$ | async)">
+    <mat-toolbar><i class="material-icons" >menu</i>MENU</mat-toolbar>
+    <mat-nav-list>
+      <a mat-list-item routerLink="/" href="#"> <i class="material-icons" >home</i> HOME</a>
+      <a mat-list-item href="#" routerLink="projects" routerLinkActive="router-link-active"><i class="material-icons">library_books</i> PROJECTS</a>
+      <a mat-list-item href="#" routerLink="/projects/new"><i class="material-icons" style="margin-left: 15px;">add</i> NEW PROJECT</a>
 
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar style="background-color: #1976d2">
+      <button
+        type="button"
+        aria-label="Toggle sidenav"
+        mat-icon-button
+        (click)="drawer.toggle()"
+        *ngIf="isHandset$ | async">
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+      <span style="color:white; margin-top: 10px; margin-right: 10px;" > <i class="material-icons" >build</i></span>
+      <span style="color:white">MY PROJECT MANAGEMENT APP</span>
+    </mat-toolbar>
+    <!-- Add Content Here -->
+    <div style="padding: 30px">
+    <app-main></app-main>
+    <app-footer></app-footer>
+  </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

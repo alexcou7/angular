@@ -1,13 +1,16 @@
+<div style=" width: fit-content; background-color: white">
 <form [formGroup]="formGroup">
   <fieldset>
-    <legend>New Project Form</legend>
     <section>
-      <label for="name">Name (5-20 letters)</label>
-      <input name="name" formControlName="name" type="text">
-      <button class="primary small" style="margin-left: 10px; padding: 8px;" (click)="saveProject.emit()" [disabled]="formGroup.invalid">Add Project</button>
-      <button routerLink="/projects" class="primary small" style="margin-left: 10px; padding: 8px;"> Return </button>
+      <label for="name" style="font-weight: bold;margin-right: 15px">Project name (5-20 letters):</label>
+      <mat-form-field >
+          <input matInput name="name" placeholder="Name" formControlName="name" type="text">
+      </mat-form-field>
+      <button mat-button  style="background-color: #1976d2; color: white; margin-left: 15px;margin-right: 15px" (click)="saveProject.emit()" [disabled]="formGroup.invalid">Add Project</button>
+      <button mat-button  style="background-color: #1976d2; color: white" routerLink="/projects">Return</button>
     </section>
     <p style="color: red">{{errors}}</p>
   </fieldset>
   <p style="color: seagreen">{{mensajeOk}}</p>
 </form>
+</div>

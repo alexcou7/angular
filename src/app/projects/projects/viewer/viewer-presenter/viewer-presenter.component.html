@@ -1,11 +1,16 @@
 <h3 style="color: #1976d2">Your project information:</h3>
-<div style="border: solid 1px; width: 30%">
+<div style=" width: fit-content; background-color: white">
+<fieldset >
   <tr *ngFor="let project of projectsMostrar | async">
     <p><strong>Project id:  </strong>{{ project.id }}</p>
-      <p><strong>Project name:  </strong>{{ project.name }}</p>
+      <p><strong>Project name:  </strong>{{ project.name }}
+      <button mat-button  style="background-color: #1976d2; color: white; float: right; margin-left: 20px; margin-top: -7px" routerLink="/projects">Return</button>
+    </p>
     </tr>
-</div>
+
+</fieldset>
 <ng-template #error>
   <p style="color: red" >The project with ID: {{id}} doesnt exists in our database</p>
 </ng-template>
-<button routerLink="/projects" class="primary small" style="padding: 8px;"> Return </button>
+</div>
+
